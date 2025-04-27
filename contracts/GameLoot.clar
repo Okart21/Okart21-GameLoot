@@ -95,4 +95,6 @@
   (nft-get-owner? game-item item-id))
 
 (define-read-only (is-game-active (game-id principal))
-  (default-to false (get active (default-to {name: "", active: false} (map-get? game-registry game-id)))))
+  (match (map-get? game-registry game-id)
+    game-data (get active game-data)
+    false))
